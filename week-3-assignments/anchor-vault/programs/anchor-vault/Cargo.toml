@@ -1,0 +1,37 @@
+[package]
+name = "anchor-vault"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "anchor_vault"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+[dependencies]
+anchor-lang = "1.0.2"
+
+[dev-dependencies]
+litesvm = "0.12.0"
+solana-address = "2.6.0"
+solana-keypair = "3.1.2"
+solana-signer = "3.0.0"
+solana-message = "3.0.0"
+solana-transaction = "3.1.0"
+
+[[test]]
+name = "anchor_vault"
+path = "tests/anchor_vault.rs"
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(target_os, values("solana"))'] }
